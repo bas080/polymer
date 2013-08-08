@@ -37,6 +37,11 @@ minetest.register_node("polymer:extruder", {
   drawtype = "node",
   description = "Polymer Extruder",
   groups = {not_in_creative_inventory=1, snappy = 3,flammable=2, attached_node=1},
+  can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory()
+		return inv:is_empty("input")
+	end,
   on_construct = function(pos, node)
     local meta = minetest.get_meta(pos)
     local inv = meta:get_inventory()
